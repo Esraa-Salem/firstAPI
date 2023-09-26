@@ -74,7 +74,9 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'testregister.wsgi.application'
 SWAGGER_SETTINGS = {
-   'USE_SESSION_AUTH': False
+   'USE_SESSION_AUTH': True,
+   'LOGIN_URL':'/admin/login/',
+   'LOGOUT_URL':'/admin/logout/',
 }
 
 # Database
