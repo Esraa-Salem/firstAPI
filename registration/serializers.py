@@ -8,7 +8,7 @@ class UserSerializer(serializers.ModelSerializer):
     last_name=serializers.CharField(max_length=65,min_length=2)
     class Meta:
         model=User
-        fields= ['username','first_name','last_name','email','password']
+        fields= ['id','username','first_name','last_name','email','password']
 
     def validate(self,attrs):
         if User.objects.filter(email=attrs['email']).exists():
@@ -17,3 +17,5 @@ class UserSerializer(serializers.ModelSerializer):
 
     def create (self,validated_data):
         return User.objects.create_user(validated_data)
+   
+    

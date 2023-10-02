@@ -18,6 +18,7 @@ from django.contrib import admin
 from django.urls import path, include
 from drf_yasg import openapi
 from drf_yasg.views import get_schema_view
+from rest_framework.authtoken import views as authtoken_views
  
 schema_view = get_schema_view(
    openapi.Info(
@@ -36,9 +37,11 @@ schema_view = get_schema_view(
      
 urlpatterns = [
     path('admin/', admin.site.urls,name='admin'),
+    path('api-token-auth/',authtoken_views.obtain_auth_token),
+    path('register/',include('registration.urls')),
     path('api/v1/',
          include([
-             path('',include('registration.urls')),
+             
              path('swagger/', schema_view.with_ui('swagger', cache_timeout=0), name='schema-swagger-ui'),
          ])
          ),
